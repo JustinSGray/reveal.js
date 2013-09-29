@@ -145,10 +145,24 @@ OK
 				</section>
 
 				<section>
-					<h2>Major Concepts:</h2>
+					<h2>What is OpenMDAO?</h2>
+					<ul>
+						<li>Python based framework for engineering design</li>
+						<li>Built in support for advanced MDAO tools and methods</li>
+						<li>Permissive Open Source License: Apache V2.0</li>
+						<li><a href="http://openmdao.org/">http://openmdao.org</a></li>
+						<li>Uses: Aircraft, engine, wind turbine & farm design,
+							small satellite design, Digital Signal Processing
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Core Concepts:</h2>
 					<h2><ol>
 						<li>Dataflow</li>
-						<li>Drivers &amp; Workflow</li>
+						<li>Drivers</li>
+						<li>Workflow</li>
 					</ol></h2>
 				</section>
 
@@ -207,9 +221,114 @@ OK
 					dataflow </p>
 				</section>
 				<section>
-					<h2 > Drivers &amp; Workflow </h2>
-					<h3>Driver: Solvers, Optimizers, DOE, etc.</h3>
-					<h3>Workflow: How and when you run components</h3>
+					<h1> Drivers</h1>
+					<h3>Solvers, Optimizers, DOE, etc.</h3>
+					<p> Any iterative process will be represented as a driver in OpenMDAO </p> 
+				</section>
+				<section>
+					<h2> Built in Drivers </h2>
+					<ul>
+						<li>Optimizers:<ul>
+							<li>CONMINDriver</li>
+							<li>SLSQPDriver</li>
+							<li>COBYLADriver</li>
+							<li>NEWSUMTDriver</li>
+							<li>Genetic</li>
+						</ul></li>
+						<li>Solvers:<ul>
+							<li>FixedPointIterator</li>
+							<li>BroydenSolver</li>
+						</ul></li>
+						<li>Misc:<ul>
+							<li>DOEdriver</li>
+							<li>CaseIteratorDriver</li>
+							<li>SensitivityDriver</li>
+						</ul></li>
+				</section>
+				<section>
+					<h1>Workflow</h1>
+					<h3>Each driver has a workflow that specifies a set of components to run, and the order to run them in</h3>
+				</section>
+				<section>
+					<section>
+						<h3> What workflow would you define for a solver to converge this problem?</h3>
+						<img class="transparent" src="img/dataflow3.png" alt="dataflow example with one coupling">
+					</section> 
+					<section>
+						<h3> Converge everything at one </h3>
+						<img class="transparent" src="img/workflow1.png" alt="dataflow example with one coupling">
+					</section>
+					<section>
+						<h3> Converg A &amp; B first</h3>
+						<img class="transparent" src="img/workflow2.png" alt="dataflow example with one sub-iteration">
+						<p> You can nest drivers into the workflow of other drivers </p>
+						<aside class="notes">
+							Why would you do it this way? What if you had analytic derivatives for A &amp; B, 
+							so you wanted to use a newton solver there. But you don't have them for C. So you 
+							want to use Fixed Point Iteration for that part! 
+						</aside>
+					</section>
+					<section>
+						<h3> Lots of sub-iterations </h3>
+						<img class="transparent" src="img/workflow3.png" alt="dataflow example with nested iteration">
+					</section>
+				</section>
+				<section>
+					<h3> What would it look like if you wanted to optimize this problem? </h3>
+					<img class="fragment transparent" src="img/workflow4.png" alt="optimization workflow">
+
+				</section>
+				<section>
+					<img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
+					<h1> Basic Tutorial </h1>
+					<p> Goal: Introduce you to the basics of building OpenMDAO models
+						so you can start your project
+					</p>
+				</section>
+				<section>
+					<h3> General Layout of an OpenMDAO model</h3>
+					<pre><code class="python" data-trim contenteditable>
+#import necessary libraries and classes						
+from openmdao.main.api import Assembly, Component
+from openmdao.lib.drivers.api import SLSQPDriver
+
+#define your Assembly sub-class
+class MyAnalysis(Assembly): 
+	#use this function to set up your assembly
+	def configure(self): 
+		#adding components
+		self.add('c1',Component())
+		self.add('c1',Component())
+		#connections
+		self.connect('c1.out','c2.in')
+		#driver &amp; workflow setup
+		self.add('driver',SLSQPDriver()) #the top Driver is called 'driver'
+		self.driver.add_parameter('c1.dv1')
+		self.driver.add_objective('c2.objective')
+		self.driver.workflow.add(['c1','c2'])
+
+if __name__ == "__main__": 
+	a = Assembly() #now you can do something with it
+					</code></pre>
+				</section>
+				<section>
+					<h2>The Sellar Problem </h2>
+					<p> problem formulation... </p>
+				</section>
+				<section>
+					<p> Activate your OpenMDAO environment, then get out of the source 
+						directory. Make a new folder somewhere you want to work today. 
+					</p>
+					<br/>
+					<p>
+						Go to the OpenMDAO docs on the <a href="http://openmdao.org/docs/tutorials/mdao/intro.html">
+						Sellar problem</a> and copy the code there
+					</p>
+						<h3>or</h3>
+					<p>
+						Download the <a href="http://openmdao.org/docs/_downloads/sellar.py">sellar.py</a> file we provide. 
+					</p>
+					<p> Note: if you download the file, it will have some extra stuff in there that we'll use later</p>
 				</section>
 		</div>
 
