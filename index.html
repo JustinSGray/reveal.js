@@ -313,7 +313,22 @@ if __name__ == "__main__":
 				</section>
 				<section>
 					<h2>The Sellar Problem </h2>
-					<p> problem formulation... </p>
+					<p style="font-size:15pt;">
+						\[\begin{aligned}
+						\min{F(x_1,y_1,y_2,z_2)} &amp; = x_1^2 + z_2 + y_1 + e^{-y_2}\\
+						w.r.t. &amp; x_1,z_1,z_2 \\
+						s.t. &amp; \frac{y_1}{3.16} - 1 \geq 0 \\
+						&amp; 1 - \frac{y_2}{24} \geq 0 \\
+						&amp; -10 \leq z_1 \leq 10 \\
+						&amp; 0 \leq z_2 \leq 10 \\
+						&amp; 0 \leq z_1 \leq 10 \\ \\
+						\end{aligned} \]
+
+						\[\begin{aligned}
+						D1: &amp; y_1(z_1,z_2,x_1,y_2) = z_1^2 + x_1 + z_2 - 0.2y_2 \\
+						D2: &amp; y_2(z_1, z_2, y_1) = \sqrt{y_1} + z_1 + z_2
+						\end{aligned} \]
+					</p>
 				</section>
 				<section>
 					<p> Activate your OpenMDAO environment, then get out of the source 
@@ -348,6 +363,11 @@ if __name__ == "__main__":
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
+			    math: {
+			        mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+			        config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+			    },
+
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
@@ -355,7 +375,8 @@ if __name__ == "__main__":
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/math/math.js', async: true }				
 				]
 			});
 
