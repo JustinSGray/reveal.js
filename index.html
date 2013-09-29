@@ -338,17 +338,157 @@ if __name__ == "__main__":
 					<p> Activate your OpenMDAO environment, then get out of the source 
 						directory. Make a new folder somewhere you want to work today. 
 					</p>
-					<br/>
+					<pre><code> openmdao docs </code></pre>
 					<p>
-						Go to the OpenMDAO docs on the <a href="http://openmdao.org/docs/tutorials/mdao/intro.html">
-						Sellar problem</a> and copy the code there
+						This will open up docs in a web browser, but they are stored locally 
+						on you machine. OpenMDAO always ships with its docs locally, so you 
+						don't need to be on the internet to use them. 
+
+						Now Navigate to 
 					</p>
-						<h3>or</h3>
-					<p>
-						Download the <a href="http://openmdao.org/docs/_downloads/sellar.py">sellar.py</a> file we provide. 
-					</p>
-					<p> Note: if you download the file, it will have some extra stuff in there that we'll use later</p>
+					</pre><code>
+						OpenMDAO Tutorials -> MDAO Architectures -> The Sellar Problem
+					</code></pre>
+
+					<p>Copy the code on that page into a <span class="green">sellar.py</span> file</p>
+					
 				</section>
+				<section>
+					<section>
+						<p>Create another file, <span class="green">sellar_opt.py</span><p>
+							<pre><code class="python" data-trim contenteditable>
+from openmdao.main.api import Assembly
+from openmdao.lib.drivers.api import MDASolver, SLSQPdriver
+from openmdao.lib.casehandlers.api import CSVCaseRecorder
+
+from sellar import Discipline1, Discipline2
+
+class Opt(Assembly): 
+
+    def configure(self): 
+
+        d1 = self.add('d1',Discipline1())
+        d2 = self.add('d2',Discipline2())
+
+        self.connect('d1.y1','d2.y1')
+        self.connect('d2.y2','d1.y2')
+        #note the circular connection here!
+
+							</code></pre>
+					</section>
+					<section>
+						<pre><code class="python" data-trim contenteditable>  
+
+driver = self.add('driver',SLSQPdriver())
+driver.add_parameter('d1.x1',low=0,high=10, start=1.0)
+driver.add_parameter(['d1.z1','d2.z1'],low=-10,high=10, start=5.0)
+driver.add_parameter(['d1.z2','d2.z2'],low=0,high=10, start=2.0)
+driver.add_objective('d1.x1**2+d1.z2+d1.y1+exp(-d2.y2)')
+driver.add_constraint('3.16 < d1.y1')
+driver.add_constraint('d2.y2 < 24.0')
+driver.recorders = [CSVCaseRecorder('opt_cases.csv'),]
+driver.workflow.add('mda')
+
+#special driver that knows how to handle circular connections
+mda = self.add('mda', MDASolver())
+mda.workflow.add(['d1','d2'])
+mda.recorders = [CSVCaseRecorder('mda_cases.csv'),]
+
+
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="python" data-trim contenteditable>  
+
+if __name__ == "__main__": 
+
+    o = Opt()
+    o.run()
+    print "x1: %3.2f, z1:%3.2f, z2:%3.2f, y1:%3.2f, y2:%3.2f"%(o.d1.x1, o.d1.z1, o.d1.z2, o.d1.y1, o.d1.y2)
+    print "function calls: %d, derivative calls: %d"%(o.d1.exec_count, o.d1.derivative_exec_count)
+
+
+						</code></pre>	
+
+						<p> Now run this file and you should get: </p>	
+						<pre><code class="no-highlight" data-trim contenteditable>  
+x1: 0.00, z1:1.98, z2:-0.00, y1:3.16, y2:3.76
+function calls: 94, derivative calls: 0
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<h1> OpenMDAO Plugins </h1>
+				</section>
+				<section>
+					<h2>Finding Plugins</h2>
+					<pre><code class="no-highlight">plugin list --github</code></pre>
+					<p> This gives a list of OpenMDAO plugins from our
+						<a href="http://github.com/openmdao-plugins">  GitHub plugins project </a> 
+					</p>
+
+					<h2>Installing Plugins</h2>
+					<pre><code class="no-highlight">plugin install --github neuralnet</code></pre>
+				</section>
+
+				<section>
+					<h2>What is an OpenMDAO Plugin? </h2>
+					
+					<h3>It's just a python package, with a few extra do-dads: </h3>
+					<p>	<ul>
+							<li>OpenMDAO's docs system</li>
+							<li>Entrypoints that help your plugin work with the GUI</li>
+							<li>Test skeleton to get you started... 
+								<br/><span class="yellow">Yes, we think you should write tests for your code!</span></li>
+					</p></ul>
+					<aside class="notes">
+						You don't have to make plugins for everything you do with OpenMDAO. 
+						It's fine to just put python files into a folder and work with them (like 
+						we did in the tutorial a minute ago!). You make plugins when you want to make 
+						it easier to distribute your code to other people! 
+					</aside>
+				</section>
+					
+				<section>
+					<h2> Building Your Own Plugin </h2>
+					<pre><code class="no-highlight">plugin quickstart awesome_comp -g openmdao.component</code></pre>
+					<p> This will create an <span class="green"> awesome_comp </span> 
+						folder, which has a skeleton openmdao plugin all ready setup
+					</p>
+					<p>
+						We have skeletons for a few different kinds of plugins: 
+						<pre><code class="no-highlight">plugin quickstart --help</code></pre>
+					</p>
+				</section>
+
+				<section>
+					<h3> Plugin Structure </h3>
+					<ul class="nobullet">
+						<li>docs<ul class="nobullet">
+							<li>docs files...</li>
+						</ul></li>
+						<li>MANIFEST.in</li>
+						<li>README.txt</li>
+						<li>setup.cfg</li>
+						<li><span class="green">setup.py</span></li>
+						<li>src<ul class="nobullet">
+							<li>awesome_comp<ul class="nobullet">
+								<li>__init__.py</li>
+								<li><span class="green">awesome_comp.py</span></li>
+								<li>test<ul class="nobullet">
+									<li>test_awesome_comp.py</li>
+								</ul></li>
+							</ul></li>
+						</ul></li>
+					</ul>
+				</section>
+
+				
+				<section>
+
+				</section>
+
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
