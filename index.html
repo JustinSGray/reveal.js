@@ -37,7 +37,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<img src="img/openmdao_logo.png" alt="OpenMDAO">
+					<img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
 					<h2>Installation and Introduction</h2>
 					<p>
 						Created by <a href="http://openmdao.org">The OpenMDAO Team</a> 
@@ -84,11 +84,12 @@ brew install gfortran
 pip install scipy
 brew install freetype
 pip install matplotlib
+brew install git
 						</code></pre>
 						<p> Also great for SU2 pre-reqs</p>
-						<pre><code data-trim contenteditable>
+						<pre><code class="no-highlight" data-trim contenteditable>
 brew install metis
-brew install openmp
+brew install open-mpi
 						</code></pre>
 						<p> Seriously, Homebrew is awesome!</p>
 					</section>
@@ -98,7 +99,7 @@ brew install openmp
 				<section>
 					<h3>Installing with The "go" script:</h3>
 					<hr/>
-					<code>python go-openmdao-dev.py</code>
+					<p><pre><code class="no-highlight">python go-openmdao-dev.py</code></pre></p>
 					<hr/>
 					<p><small>note: you need to be connected to the internet!</small></p>
 
@@ -110,24 +111,45 @@ brew install openmp
 						<ul>
 							<li>Installer builds an VirtualEnv with all of OpenMDAO's dependencies.</li>
 							<li>You can run the "go script" inside an existing VirtualEnv</li>
-							<li>You can have multiple OpenMDAO install co-exist (Like a release and a dev version)</li>
-							<li>Why multiple versions? Lots of reasons, but mainly so you don't have to update your models all the time!</li>
+							<li>You can have multiple OpenMDAO installs co-exist (Like a release and a dev version)</li>
 						</ul>
 					</aside>
 				</section>
 
 				<section>
-					<h1> OpenMDAO Introduction</h1>
+					<h2>Activate OpenMDAO</h2>
+					<p>Navigate into the top level OpenMDAO source directory</p>
+					<ul class="nobullet" style="width:50%">
+						<li>Linux, MacOS: <pre><code> . devenv/bin/activate </code></pre></li>
+						<li>Windows: <pre><code> devenv\Scripts\activate</code></pre></li>
+						<hr/>
+						<li> Run the tests: 
+							<pre><code class="no-highlight"> openmdao test --small </code></pre>
+						</li>
+						<li>
+							You should see output like: 
+							<pre><code class="no-highlight"> 
+Ran 716 tests in 54.072s 
+
+OK
+							</code></pre>
+						</li>
+					</ul>
+					
+				</section>
+
+				<section>
+					<img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
+					<hr/>
+					<h1>Introduction</h1>
 				</section>
 
 				<section>
 					<h2>Major Concepts:</h2>
-					<ul>
-						<li>Dataflow vs. Workflow</li>
-						<li>Drivers and Workflows</li>
-						<li>Python Script vs GUI </li>
-						<li>Plugins</li>
-					</ul>
+					<h2><ol>
+						<li>Dataflow</li>
+						<li>Drivers &amp; Workflow</li>
+					</ol></h2>
 				</section>
 
 				<section>
@@ -140,44 +162,55 @@ brew install openmp
 						<p>Data passing, or data connections</p>
 					</section>
 					<section>
-						<h2>OpenMDAO Dataflow</h2>
-						<p>Dataflow: How inputs and outputs relate to eachother
-						<img class="fragment transparent" src="img/dataflow1.png" alt="dataflow example with one coupling" > 
-						<img class="fragment transparent" src="img/dataflow2.png" alt="dataflow example with two couplings" >
-						<img class="fragment transparent" src="img/dataflow3.png" alt="dataflow example with two couplings" >
+						<h3>Another way to think about Dataflow</h3>
+						<p>Equality constraints between inputs and outputs
+						<img class="transparent" src="img/dataflow4.png" alt="dataflow example with one coupling" > 
 						</p>
-						
+						<p>
+							<code> A.out = B.in </code><br/>
+							<code> B.out = C.in </code>
+						</p>
 					</section>
 				</section>
 				<section>
-					<section>
-						<h2 > Workflow </h2>
-						<p>Workflow: How and when you run each component
-						<p><img class="transparent" src="img/dataflow1.png" alt="dataflow example with one coupling" ></p>
-					    <p>How would you run these three component?</p>
-
-						<ol>
-							<li class="fragment">solve(A, B, C)</li>
-							<li class="fragment">solve(A, B) , C</li>
-							<li class="fragment">solve(C, solve(A, B))?</li>
-						</ol>
-					</section>
-
-					<section>
-						<h2> What about these?</h2>
-						<img class="transparent" src="img/dataflow2.png" alt="dataflow example with two couplings" >
-						<img class="transparent" src="img/dataflow3.png" alt="dataflow example with two couplings" >
-					</section>
-
+					<h3> So why is the distinction important? </h3>
+					<p>
+						<img class="transparent" src="img/dataflow1.png" alt="dataflow example with one coupling" > 
+						<img class="fragment transparent" data-fragment-index=
+						"2" src="img/dataflow3.png" alt="dataflow example with one coupling" > 
+					</p>
+					<p class="fragment" data-fragment-index="1">
+						Solid connections imply an explicit ordering: <code>A->B->C</code>
+					</p>						
+					<hr class="fragment" data-fragment-index="2">
+					<p class="fragment" data-fragment-index="2">
+						What is the proper order for this multidisciplinary dataflow?   
+					</p>
+					<aside class="notes">
+						<ul>
+							<li>Although the difference is subtle, it becomes very important 
+							for mulitdisciplinary problems (where coupling exists) </li>
+							<li>This contrived example has lots of valid orderings </li>
+							<li>I think about it like this: The dataflow does not define 
+								any order. However, if feed forward relationships are present
+								then it may suggest a sensible ordering. You can choose to ignore
+								this if you like, as long as you respect the equality constraints 
+								in your final answer. 
+							</li>
+						</ul>
+					</aside>
 				</section>
-
 				<section>
-					<h2> Drivers:</h2>
-					<h3> Solvers, Optimizers, and more! <h3>
-					<img class="transparent" src="img/dataflow2.png" alt="dataflow example with two couplings" >
-					<img class="transparent" src="img/dataflow3.png" alt="dataflow example with two couplings" >
+					<h3> In OpenMDAO dataflow only defines relationships between components.</h3>
+					<h3> It does not <u>directly</u> dictate execution order!</h3>
+					<p> Note: For feed forward cases, we do have a way to extract execution order from 
+					dataflow </p>
 				</section>
-
+				<section>
+					<h2 > Drivers &amp; Workflow </h2>
+					<h3>Driver: Solvers, Optimizers, DOE, etc.</h3>
+					<h3>Workflow: How and when you run components</h3>
+				</section>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
