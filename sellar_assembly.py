@@ -9,10 +9,10 @@ class Opt(Assembly):
 
     def configure(self): 
 
-        d1 = self.add('d1',Discipline1())
-        d2 = self.add('d2',Discipline2())
-        #d1 = self.add('d1',Discipline1_WithDerivatives())
-        #d2 = self.add('d2',Discipline2_WithDerivatives())
+        #d1 = self.add('d1',Discipline1())
+        #d2 = self.add('d2',Discipline2())
+        d1 = self.add('d1',Discipline1_WithDerivatives())
+        d2 = self.add('d2',Discipline2_WithDerivatives())
 
         self.d1.y1 = 1.0
 
@@ -24,7 +24,7 @@ class Opt(Assembly):
         mda = self.add('mda', MDASolver())
         mda.workflow.add(['d1','d2'])
         mda.recorders = [CSVCaseRecorder('mda_cases.csv'),]
-        #mda.newton=True
+        mda.newton=True
 
         driver = self.add('driver',SLSQPdriver())
         driver.add_parameter('d1.x1',low=0,high=10, start=1.0)

@@ -380,19 +380,19 @@ class Opt(Assembly):
 						<pre><code class="python" data-trim contenteditable>  
 
 driver = self.add('driver',SLSQPdriver())
-driver.add_parameter('d1.x1',low=0,high=10, start=1.0)
-driver.add_parameter(['d1.z1','d2.z1'],low=-10,high=10, start=5.0)
-driver.add_parameter(['d1.z2','d2.z2'],low=0,high=10, start=2.0)
+driver.add_parameter('d1.x1',low=0,high=10)
+driver.add_parameter(['d1.z1','d2.z1'],low=-10,high=10)
+driver.add_parameter(['d1.z2','d2.z2'],low=0,high=10)
 driver.add_objective('d1.x1**2+d1.z2+d1.y1+exp(-d2.y2)')
 driver.add_constraint('3.16 < d1.y1')
 driver.add_constraint('d2.y2 < 24.0')
+#records each iteration to a csv file
 driver.recorders = [CSVCaseRecorder('opt_cases.csv'),]
-driver.workflow.add('mda')
 
 #special driver that knows how to handle circular connections
 mda = self.add('mda', MDASolver())
 mda.workflow.add(['d1','d2'])
-mda.recorders = [CSVCaseRecorder('mda_cases.csv'),]
+driver.workflow.add('mda')
 
 
 						</code></pre>
@@ -419,7 +419,8 @@ function calls: 94, derivative calls: 0
 				</section>
 
 				<section>
-					<h1> OpenMDAO Plugins </h1>
+					<img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
+					<h1>Plugins </h1>
 				</section>
 				<section>
 					<h2>Finding Plugins</h2>
@@ -449,6 +450,22 @@ function calls: 94, derivative calls: 0
 						it easier to distribute your code to other people! 
 					</aside>
 				</section>
+
+				<section>
+					<h3> What could you make plugins for?</h3>
+					<ul>
+						<li class="fragment" data-fragment-index="1">Drivers</li>
+						<li class="fragment" data-fragment-index="1">Surrogate models</li>
+						<li class="fragment" data-fragment-index="1">Component Libraries</li>
+						<li class="fragment" data-fragment-index="1"> Tools to submit jobs to your local cluster </li>
+						<li class="fragment green" data-fragment-index="2"> Code Wrappers (for SU2!) </li>
+						<li class="fragment green" data-fragment-index="2"> Method you developed for your thesis </li>	
+						<li class="fragment yellow" data-fragment-index="3"> Assembly for Event Driven Simulations</li>
+						<li class="fragment yellow" data-fragment-index="3"> Workflow that finds optimal orderings for coupled problems </li>
+						<li class="fragment red" data-fragment-index="4"> Different GUI</li>
+						<li class="fragment red" data-fragment-index="4"> Amazon S3 based CaseRecorder </li> 
+					</ul>
+				</section>
 					
 				<section>
 					<h2> Building Your Own Plugin </h2>
@@ -464,6 +481,7 @@ function calls: 94, derivative calls: 0
 
 				<section>
 					<h3> Plugin Structure </h3>
+					(stuff in <span class="green">green</span> is where you want to start)
 					<ul class="nobullet">
 						<li>docs<ul class="nobullet">
 							<li>docs files...</li>
@@ -485,8 +503,10 @@ function calls: 94, derivative calls: 0
 				</section>
 
 				
-				<section>
 
+				
+				<section>
+					<h2> Questions? </h2>
 				</section>
 
 		</div>
