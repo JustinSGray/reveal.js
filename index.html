@@ -101,7 +101,7 @@ brew install open-mpi
 					<hr/>
 					<p><pre><code class="no-highlight">python go-openmdao-dev.py</code></pre></p>
 					<hr/>
-					<p><small>note: you need to be connected to the internet!</small></p>
+					<p><small>note: you need to be connected to the Internet!</small></p>
 
 				</section>
 				<section>
@@ -118,7 +118,7 @@ brew install open-mpi
 
 				<section>
 					<h2>Activate OpenMDAO</h2>
-					<p>Navigate into the top level OpenMDAO source directory</p>
+					<p>Navigate into the top-level OpenMDAO source directory</p>
 					<ul class="nobullet" style="width:50%">
 						<li>Linux, MacOS: <pre><code> . devenv/bin/activate </code></pre></li>
 						<li>Windows: <pre><code> devenv\Scripts\activate</code></pre></li>
@@ -147,8 +147,8 @@ OK
 				<section>
 					<h2>What is OpenMDAO?</h2>
 					<ul>
-						<li>Python based framework for engineering design</li>
-						<li>Built in support for advanced MDAO tools and methods</li>
+						<li>Python-based framework for engineering design</li>
+						<li>Built-in support for advanced MDAO tools and methods</li>
 						<li>Permissive Open Source License: Apache V2.0</li>
 						<li><a href="http://openmdao.org/">http://openmdao.org</a></li>
 						<li>Applications: <ul>
@@ -210,7 +210,7 @@ OK
 							for mulitdisciplinary problems (where coupling exists) </li>
 							<li>This contrived example has lots of valid orderings </li>
 							<li>I think about it like this: The dataflow does not define 
-								any order. However, if feed forward relationships are present
+								any order. However, if feed-forward relationships are present,
 								then it may suggest a sensible ordering. You can choose to ignore
 								this if you like, as long as you respect the equality constraints 
 								in your final answer. 
@@ -219,9 +219,9 @@ OK
 					</aside>
 				</section>
 				<section>
-					<h3> In OpenMDAO dataflow only defines relationships between components.</h3>
+					<h3> In OpenMDAO, dataflow only defines relationships between components.</h3>
 					<h3> It does not <u>directly</u> dictate execution order!</h3>
-					<p> Note: For feed forward cases, we do have a way to extract execution order from 
+					<p> Note: For feed-forward cases, we do have a way to extract execution order from 
 					dataflow </p>
 				</section>
 				<section>
@@ -230,7 +230,7 @@ OK
 					<p> Any iterative process will be represented as a driver in OpenMDAO </p> 
 				</section>
 				<section>
-					<h2> Built in Drivers </h2>
+					<h2> Built-in Drivers </h2>
 					<ul>
 						<li>Optimizers:<ul>
 							<li>CONMINDriver</li>
@@ -342,7 +342,7 @@ if __name__ == "__main__":
 					<p>
 						This will open up docs in a web browser, but they are stored locally 
 						on you machine. OpenMDAO always ships with its docs locally, so you 
-						don't need to be on the internet to use them. 
+						don't need to be on the Internet to use them. 
 
 						Now Navigate to 
 					</p>
@@ -436,7 +436,7 @@ function calls: 94, derivative calls: 0
 				<section>
 					<h2>What is an OpenMDAO Plugin? </h2>
 					
-					<h3>It's just a python package, with a few extra do-dads: </h3>
+					<h3>It's just a python package, with a few extra doodads: </h3>
 					<p>	<ul>
 							<li>OpenMDAO's docs system</li>
 							<li>Entrypoints that help your plugin work with the GUI</li>
@@ -460,10 +460,10 @@ function calls: 94, derivative calls: 0
 						<li class="fragment" data-fragment-index="1"> Tools to submit jobs to your local cluster </li>
 						<li class="fragment green" data-fragment-index="2"> Code Wrappers (for SU2!) </li>
 						<li class="fragment green" data-fragment-index="2"> Method you developed for your thesis </li>	
-						<li class="fragment yellow" data-fragment-index="3"> Assembly for Event Driven Simulations</li>
+						<li class="fragment yellow" data-fragment-index="3"> Assembly for Event-Driven Simulations</li>
 						<li class="fragment yellow" data-fragment-index="3"> Workflow that finds optimal orderings for coupled problems </li>
 						<li class="fragment red" data-fragment-index="4"> Different GUI</li>
-						<li class="fragment red" data-fragment-index="4"> Amazon S3 based CaseRecorder </li> 
+						<li class="fragment red" data-fragment-index="4"> Amazon S3-based CaseRecorder </li> 
 					</ul>
 				</section>
 					
@@ -471,7 +471,7 @@ function calls: 94, derivative calls: 0
 					<h2> Building Your Own Plugin </h2>
 					<pre><code class="no-highlight">plugin quickstart awesome_comp -g openmdao.component</code></pre>
 					<p> This will create an <span class="green"> awesome_comp </span> 
-						folder, which has a skeleton openmdao plugin all ready setup
+						folder, which has a skeleton openmdao plugin already setup
 					</p>
 					<p>
 						We have skeletons for a few different kinds of plugins: 
