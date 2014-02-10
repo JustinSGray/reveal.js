@@ -1,362 +1,161 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+        <title>reveal.js - The HTML Presentation Framework</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/night.css" id="theme">
-		<link rel="stylesheet" href="custom.css">
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/night.css" id="theme">
+        <link rel="stylesheet" href="custom.css">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
 
-	<body>
+    <body>
 
-		<div class="reveal">
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
-					<h2>Installation and Introduction</h2>
-					<p>
-						Created by <a href="http://openmdao.org">The OpenMDAO Team</a> 
-					</p>
-				</section>
-				
-				<section>
-					<section>
-						<h2>Standard Pre-Reqs</h2>
-						<ul>
-						<li>Python 2.7</li>
-						<li>Numpy</li>
-						<li>Scipy</li>
-						<li>MatPlotLib</li>
-						<li>(Windows) pywin32 </li>
-						</ul>
-					</section>
-					<section>
-						<h2>Hackathon Pre-Reqs</h2>
-						<ul>	
-							<li><a href="http://git-scm.com/">Git</a></li>
-							<li><a href="http://openmdao.org/docs/dev-guide/intro.html#system-requirements">Compilers!</a> 
-								<ul>
-									<li> Windows: Mingw</li>
-									<li> Mac OSX: Xcode + gFortran </li> 
-									<li> Linux: gFortran </li>
-								</ul>
-							</li>	
-							<li><a href="https://github.com/OpenMDAO/OpenMDAO-Framework/tree/hifi"> Clone of OpenMDAO Repo</a> <br/>
-								<code class="small">git clone -b hifi https://github.com/OpenMDAO/OpenMDAO-Framework.git</code>
-							</li>
-						</ul>
-					</section>
-					<section>
-						<h2>MacOS "Pro Tip": 
-							<a href="http://brew.sh/">Homebrew</a>
-						</h2>
-						<a href="http://www.lowindata.com/2013/installing-scientific-python-on-mac-os-x/"> Full Instructions </a><br/><br/>
-						<p> Short version:</p>
-						<pre><code data-trim contenteditable>
-brew install python
-pip install numpy
-brew install gfortran
-pip install scipy
-brew install freetype
-pip install matplotlib
-brew install git
-						</code></pre>
-						<p> Also great for SU2 pre-reqs</p>
-						<pre><code class="no-highlight" data-trim contenteditable>
-brew install metis
-brew install open-mpi
-						</code></pre>
-						<p> Seriously, Homebrew is awesome!</p>
-					</section>
-					
-				</section>
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
+                    <hr/>
+                    <h2>Hi!</h2>
+                    <ul> 
+                        <li>Justin Gray (Justin.S.Gray@gmail.com)</li>
+                        <li>Jeff Chin</li>
+                        <li>Tristan Hearn</li>
+                    </ul>
+                </section>
 
-				<section>
-					<h3>Installing with The "go" script:</h3>
-					<hr/>
-					<p><pre><code class="no-highlight">python go-openmdao-dev.py</code></pre></p>
-					<hr/>
-					<p><small>note: you need to be connected to the Internet!</small></p>
+                <section>
+                    <section>
+                        <h2> Webcam pulse detector </h2>
+                        <img class="transparent" src="img/webcam_tristan.jpeg" > 
+                    </section>
 
-				</section>
-				<section>
-					<h2> While we wait... Questions?</h2>
-					<img src="img/cookie_monster.gif" alt="waiting">
-					<aside class="notes">
-						<ul>
-							<li>Installer builds an VirtualEnv with all of OpenMDAO's dependencies.</li>
-							<li>You can run the "go script" inside an existing VirtualEnv</li>
-							<li>You can have multiple OpenMDAO installs co-exist (Like a release and a dev version)</li>
-						</ul>
-					</aside>
-				</section>
+                    <section> 
+                        <ul> 
+                            <li>Real time signal + image processing</li>
+                            <li>Hidden signal extraction</li>
+                            <li>Medical applications</li>
+                        </ul>
+                    </section>
 
-				<section>
-					<h2>Activate OpenMDAO</h2>
-					<p>Navigate into the top-level OpenMDAO source directory</p>
-					<ul class="nobullet" style="width:50%">
-						<li>Linux, MacOS: <pre><code> . devenv/bin/activate </code></pre></li>
-						<li>Windows: <pre><code> devenv\Scripts\activate</code></pre></li>
-						<hr/>
-						<li> Run the tests: 
-							<pre><code class="no-highlight"> openmdao test --small </code></pre>
-						</li>
-						<li>
-							You should see output like: 
-							<pre><code class="no-highlight"> 
-Ran 716 tests in 54.072s 
+                    <section>
+                        <img class="transparent" src="img/webcam_flowchart.png" alt="OpenMDAO">
+                        
+                    </section>
 
-OK
-							</code></pre>
-						</li>
-					</ul>
-					
-				</section>
 
-				<section>
-					<img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
-					<hr/>
-					<h1>Introduction</h1>
-				</section>
 
-				<section>
-					<h2>What is OpenMDAO?</h2>
-					<ul>
-						<li>Python-based framework for engineering design</li>
-						<li>Built-in support for advanced MDAO tools and methods</li>
-						<li>Permissive Open Source License: Apache V2.0</li>
-						<li><a href="http://openmdao.org/">http://openmdao.org</a></li>
-						<li>Applications: <ul>
-							<li>Aircraft, turbine engine</li> 
-							<li>Digital Signal Processing, Biometrics</li>
-							<li>Wind turbine &amp; wind farm design</li>
-							<li>Small Satellite Design</li>
-						</ul>
-						</li>
-					</ul>
-				</section>
+                    <section>
+                        <h1>Live Demo</h1>
+                    </section>
 
-				<section>
-					<h2>Core Concepts:</h2>
-					<h2><ol>
-						<li>Dataflow</li>
-						<li>Drivers</li>
-						<li>Workflow</li>
-					</ol></h2>
-				</section>
+                    
+                </section>
 
-				<section>
-					<section>
-						<h2 > Dataflow </h2>
-						<p>Dataflow: How information moves around your model
-						<img class="transparent" src="img/dataflow1.png" alt="dataflow example with one coupling" > 
-						</p>
-						<p>Data is fed from A to B, and from B to C.</p>
-						<p>Data passing, or data connections</p>
-					</section>
-					<section>
-						<h3>Another way to think about Dataflow</h3>
-						<p>Equality constraints between inputs and outputs
-						<img class="transparent" src="img/dataflow4.png" alt="dataflow example with one coupling" > 
-						</p>
-						<p>
-							<code> A.out = B.in </code><br/>
-							<code> B.out = C.in </code>
-						</p>
-					</section>
-				</section>
-				<section>
-					<h3> So why is the distinction important? </h3>
-					<p>
-						<img class="transparent" src="img/dataflow1.png" alt="dataflow example with one coupling" > 
-						<img class="fragment transparent" data-fragment-index=
-						"2" src="img/dataflow3.png" alt="dataflow example with one coupling" > 
-					</p>
-					<p class="fragment" data-fragment-index="1">
-						Solid connections imply an explicit ordering: <code>A->B->C</code>
-					</p>						
-					<hr class="fragment" data-fragment-index="2">
-					<p class="fragment" data-fragment-index="2">
-						What is the proper order for this multidisciplinary dataflow?   
-					</p>
-					<aside class="notes">
-						<ul>
-							<li>Although the difference is subtle, it becomes very important 
-							for mulitdisciplinary problems (where coupling exists) </li>
-							<li>This contrived example has lots of valid orderings </li>
-							<li>I think about it like this: The dataflow does not define 
-								any order. However, if feed-forward relationships are present,
-								then it may suggest a sensible ordering. You can choose to ignore
-								this if you like, as long as you respect the equality constraints 
-								in your final answer. 
-							</li>
-						</ul>
-					</aside>
-				</section>
-				<section>
-					<h3> In OpenMDAO, dataflow only defines relationships between components.</h3>
-					<h3> It does not <u>directly</u> dictate execution order!</h3>
-					<p> Note: For feed-forward cases, we do have a way to extract execution order from 
-					dataflow </p>
-				</section>
-				<section>
-					<h1> Drivers</h1>
-					<h3>Solvers, Optimizers, DOE, etc.</h3>
-					<p> Any iterative process will be represented as a driver in OpenMDAO </p> 
-				</section>
-				<section>
-					<h2> Built-in Drivers </h2>
-					<ul>
-						<li>Optimizers:<ul>
-							<li>CONMINDriver</li>
-							<li>SLSQPDriver</li>
-							<li>COBYLADriver</li>
-							<li>NEWSUMTDriver</li>
-							<li>Genetic</li>
-						</ul></li>
-						<li>Solvers:<ul>
-							<li>FixedPointIterator</li>
-							<li>BroydenSolver</li>
-						</ul></li>
-						<li>Misc:<ul>
-							<li>DOEdriver</li>
-							<li>CaseIteratorDriver</li>
-							<li>SensitivityDriver</li>
-						</ul></li>
-				</section>
-				<section>
-					<h1>Workflow</h1>
-					<h3>Each driver has a workflow that specifies a set of components to run, and the order to run them in</h3>
-				</section>
-				<section>
-					<section>
-						<h3> What workflow would you define for a solver to converge this problem?</h3>
-						<img class="transparent" src="img/dataflow3.png" alt="dataflow example with one coupling">
-					</section> 
-					<section>
-						<h3> Converge everything at one </h3>
-						<img class="transparent" src="img/workflow1.png" alt="dataflow example with one coupling">
-					</section>
-					<section>
-						<h3> Converg A &amp; B first</h3>
-						<img class="transparent" src="img/workflow2.png" alt="dataflow example with one sub-iteration">
-						<p> You can nest drivers into the workflow of other drivers </p>
-						<aside class="notes">
-							Why would you do it this way? What if you had analytic derivatives for A &amp; B, 
-							so you wanted to use a newton solver there. But you don't have them for C. So you 
-							want to use Fixed Point Iteration for that part! 
-						</aside>
-					</section>
-					<section>
-						<h3> Lots of sub-iterations </h3>
-						<img class="transparent" src="img/workflow3.png" alt="dataflow example with nested iteration">
-					</section>
-				</section>
-				<section>
-					<h3> What would it look like if you wanted to optimize this problem? </h3>
-					<img class="fragment transparent" src="img/workflow4.png" alt="optimization workflow">
 
-				</section>
-				<section>
-					<img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
-					<h1> Basic Tutorial </h1>
-					<p> Goal: Introduce you to the basics of building OpenMDAO models
-						so you can start your project
-					</p>
-				</section>
-				<section>
-					<h3> General Layout of an OpenMDAO model</h3>
-					<pre><code class="python" data-trim contenteditable>
-#import necessary libraries and classes						
+                <section>
+                    <section> 
+                        <h2> Small Satellite Design Problem </h2>
+                        <img class="transparent" src="img/cadre_drawing.jpeg" > 
+                    </section>
+                    <section> 
+                        <ul>
+                            <li> 25000 Design Variables </li> 
+                            <li> Million State Variables </li> 
+                            <li> Using advanced automatic differentiation for gradients </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img class="transparent" src="img/cadre_flowchart.png" > 
+                    </section>
+                    <section>
+                        <img class="traspanrent" src="img/cadre_graphs.png" >
+                    </section>
+
+                    <section>
+                        <img class="traspanrent" src="img/cadre_earth.png" >
+                    </section>
+                </section>
+
+
+                
+
+
+                
+
+
+                <section>
+                    <h2>What is OpenMDAO?</h2>
+                    <ul>
+                        <li>Python-based framework for engineering design</li>
+                        <li>Built-in support for advanced MDAO tools and methods</li>
+                        <li>Permissive Open Source License: Apache V2.0</li>
+                        <li><a href="http://openmdao.org/">http://openmdao.org</a></li>
+                        <li>Applications: <ul>
+                            <li>Aircraft, turbine engine</li> 
+                            <li>Digital Signal Processing, Biometrics</li>
+                            <li>Wind turbine &amp; wind farm design</li>
+                            <li>Small Satellite Design</li>
+                        </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                
+                <section>
+                    <h3> General Layout of an OpenMDAO model</h3>
+                    <pre><code class="python" data-trim contenteditable>
+#import necessary libraries and classes                        
 from openmdao.main.api import Assembly, Component
 from openmdao.lib.drivers.api import SLSQPDriver
 
 #define your Assembly sub-class
 class MyAnalysis(Assembly): 
-	#use this function to set up your assembly
-	def configure(self): 
-		#adding components
-		self.add('c1',Component())
-		self.add('c1',Component())
-		#connections
-		self.connect('c1.out','c2.in')
-		#driver &amp; workflow setup
-		self.add('driver',SLSQPDriver()) #the top Driver is called 'driver'
-		self.driver.add_parameter('c1.dv1')
-		self.driver.add_objective('c2.objective')
-		self.driver.workflow.add(['c1','c2'])
+    #use this function to set up your assembly
+    def configure(self): 
+        #adding components
+        self.add('c1',Component())
+        self.add('c1',Component())
+        #connections
+        self.connect('c1.out','c2.in')
+        #driver &amp; workflow setup
+        self.add('driver',SLSQPDriver()) #the top Driver is called 'driver'
+        self.driver.add_parameter('c1.dv1')
+        self.driver.add_objective('c2.objective')
+        self.driver.workflow.add(['c1','c2'])
 
 if __name__ == "__main__": 
-	a = Assembly() #now you can do something with it
-					</code></pre>
-				</section>
-				<section>
-					<h2>The Sellar Problem </h2>
-					<p style="font-size:15pt;">
-						\[\begin{aligned}
-						\min{F(x_1,y_1,y_2,z_2)} &amp; = x_1^2 + z_2 + y_1 + e^{-y_2}\\
-						w.r.t. &amp; x_1,z_1,z_2 \\
-						s.t. &amp; \frac{y_1}{3.16} - 1 \geq 0 \\
-						&amp; 1 - \frac{y_2}{24} \geq 0 \\
-						&amp; -10 \leq z_1 \leq 10 \\
-						&amp; 0 \leq z_2 \leq 10 \\
-						&amp; 0 \leq x_1 \leq 10 \\ \\
-						\end{aligned} \]
-
-						\[\begin{aligned}
-						D1: &amp; y_1(z_1,z_2,x_1,y_2) = z_1^2 + x_1 + z_2 - 0.2y_2 \\
-						D2: &amp; y_2(z_1, z_2, y_1) = \sqrt{y_1} + z_1 + z_2
-						\end{aligned} \]
-					</p>
-				</section>
-				<section>
-					<p> Activate your OpenMDAO environment, then get out of the source 
-						directory. Make a new folder somewhere you want to work today. 
-					</p>
-					<pre><code> openmdao docs </code></pre>
-					<p>
-						This will open up docs in a web browser, but they are stored locally 
-						on you machine. OpenMDAO always ships with its docs locally, so you 
-						don't need to be on the Internet to use them. 
-
-						Now Navigate to 
-					</p>
-					</pre><code>
-						OpenMDAO Tutorials -> MDAO Architectures -> The Sellar Problem
-					</code></pre>
-
-					<p>Copy the code on that page into a <span class="green">sellar.py</span> file</p>
-					
-				</section>
-				<section>
-					<section>
-						<p>Create another file, <span class="green">sellar_opt.py</span><p>
-							<pre><code class="python" data-trim contenteditable>
+    a = Assembly() #now you can do something with it
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <section>
+                        <p>A Component File <span class="green">sellar_opt.py</span><p>
+                            <pre><code class="python" data-trim contenteditable>
 from openmdao.main.api import Assembly
 from openmdao.lib.drivers.api import MDASolver, SLSQPdriver
 from openmdao.lib.casehandlers.api import CSVCaseRecorder
@@ -374,178 +173,127 @@ class Opt(Assembly):
         self.connect('d2.y2','d1.y2')
         #note the circular connection here!
 
-							</code></pre>
-					</section>
-					<section>
-						<pre><code class="python" data-trim contenteditable>  
+                            </code></pre>
+                    </section>
+                    
+                </section>
 
-driver = self.add('driver',SLSQPdriver())
-driver.add_parameter('d1.x1',low=0,high=10)
-driver.add_parameter(['d1.z1','d2.z1'],low=-10,high=10)
-driver.add_parameter(['d1.z2','d2.z2'],low=0,high=10)
-driver.add_objective('d1.x1**2+d1.z2+d1.y1+exp(-d2.y2)')
-driver.add_constraint('3.16 < d1.y1')
-driver.add_constraint('d2.y2 < 24.0')
-#records each iteration to a csv file
-driver.recorders = [CSVCaseRecorder('opt_cases.csv'),]
+                <section>
+                    <img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
+                    <h1>Plugins </h1>
+                </section>
+                <section>
+                    <h2>Finding Plugins</h2>
+                    <pre><code class="no-highlight">plugin list --github</code></pre>
+                    <p> This gives a list of OpenMDAO plugins from our
+                        <a href="http://github.com/openmdao-plugins">  GitHub plugins project </a> 
+                    </p>
 
-#special driver that knows how to handle circular connections
-mda = self.add('mda', MDASolver())
-mda.workflow.add(['d1','d2'])
-driver.workflow.add('mda')
+                    <h2>Installing Plugins</h2>
+                    <pre><code class="no-highlight">plugin install --github neuralnet</code></pre>
+                </section>
 
+                <section>
+                    <h2>What is an OpenMDAO Plugin? </h2>
+                    
+                    <h3>It's just a python package, with a few extra doodads: </h3>
+                    <p>    <ul>
+                            <li>OpenMDAO's docs system</li>
+                            <li>Entrypoints that help your plugin work with the GUI</li>
+                            <li>Test skeleton to get you started... 
+                                <br/><span class="yellow">Yes, we think you should write tests for your code!</span></li>
+                    </p></ul>
+                    <aside class="notes">
+                        You don't have to make plugins for everything you do with OpenMDAO. 
+                        It's fine to just put python files into a folder and work with them (like 
+                        we did in the tutorial a minute ago!). You make plugins when you want to make 
+                        it easier to distribute your code to other people! 
+                    </aside>
+                </section>
 
-						</code></pre>
-					</section>
-					<section>
-						<pre><code class="python" data-trim contenteditable>  
+                <section>
+                    <h3> What could you make plugins for?</h3>
+                    <ul>
+                        <li class="fragment" data-fragment-index="1">Drivers</li>
+                        <li class="fragment" data-fragment-index="1">Surrogate models</li>
+                        <li class="fragment" data-fragment-index="1">Component Libraries</li>
+                        <li class="fragment" data-fragment-index="1"> Tools to submit jobs to your local cluster </li>
+                        <li class="fragment green" data-fragment-index="2"> Code Wrappers (for SU2!) </li>
+                        <li class="fragment green" data-fragment-index="2"> Method you developed for your thesis </li>    
+                        <li class="fragment yellow" data-fragment-index="3"> Assembly for Event-Driven Simulations</li>
+                        <li class="fragment yellow" data-fragment-index="3"> Workflow that finds optimal orderings for coupled problems </li>
+                        <li class="fragment red" data-fragment-index="4"> Different GUI</li>
+                        <li class="fragment red" data-fragment-index="4"> Amazon S3-based CaseRecorder </li> 
+                    </ul>
+                </section>
 
-if __name__ == "__main__": 
+                <section>
+                    <h3> Plugin Structure </h3>
+                    (stuff in <span class="green">green</span> is where you want to start)
+                    <ul class="nobullet">
+                        <li>docs<ul class="nobullet">
+                            <li>docs files...</li>
+                        </ul></li>
+                        <li>MANIFEST.in</li>
+                        <li>README.txt</li>
+                        <li>setup.cfg</li>
+                        <li><span class="green">setup.py</span></li>
+                        <li>src<ul class="nobullet">
+                            <li>awesome_comp<ul class="nobullet">
+                                <li>__init__.py</li>
+                                <li><span class="green">awesome_comp.py</span></li>
+                                <li>test<ul class="nobullet">
+                                    <li>test_awesome_comp.py</li>
+                                </ul></li>
+                            </ul></li>
+                        </ul></li>
+                    </ul>
+                </section>
 
-    o = Opt()
-    o.run()
-    print "x1: %3.2f, z1:%3.2f, z2:%3.2f, y1:%3.2f, y2:%3.2f"%(o.d1.x1, o.d1.z1, o.d1.z2, o.d1.y1, o.d1.y2)
-    print "function calls: %d, derivative calls: %d"%(o.d1.exec_count, o.d1.derivative_exec_count)
+                
 
+                
+                <section>
+                    <h2> Questions? </h2>
+                </section>
 
-						</code></pre>	
+        </div>
 
-						<p> Now run this file and you should get: </p>	
-						<pre><code class="no-highlight" data-trim contenteditable>  
-x1: 0.00, z1:1.98, z2:-0.00, y1:3.16, y2:3.76
-function calls: 94, derivative calls: 0
-						</code></pre>
-					</section>
-				</section>
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
 
-				<section>
-					<img class="transparent" src="img/openmdao_logo.png" alt="OpenMDAO">
-					<h1>Plugins </h1>
-				</section>
-				<section>
-					<h2>Finding Plugins</h2>
-					<pre><code class="no-highlight">plugin list --github</code></pre>
-					<p> This gives a list of OpenMDAO plugins from our
-						<a href="http://github.com/openmdao-plugins">  GitHub plugins project </a> 
-					</p>
+        <script>
 
-					<h2>Installing Plugins</h2>
-					<pre><code class="no-highlight">plugin install --github neuralnet</code></pre>
-				</section>
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
 
-				<section>
-					<h2>What is an OpenMDAO Plugin? </h2>
-					
-					<h3>It's just a python package, with a few extra doodads: </h3>
-					<p>	<ul>
-							<li>OpenMDAO's docs system</li>
-							<li>Entrypoints that help your plugin work with the GUI</li>
-							<li>Test skeleton to get you started... 
-								<br/><span class="yellow">Yes, we think you should write tests for your code!</span></li>
-					</p></ul>
-					<aside class="notes">
-						You don't have to make plugins for everything you do with OpenMDAO. 
-						It's fine to just put python files into a folder and work with them (like 
-						we did in the tutorial a minute ago!). You make plugins when you want to make 
-						it easier to distribute your code to other people! 
-					</aside>
-				</section>
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-				<section>
-					<h3> What could you make plugins for?</h3>
-					<ul>
-						<li class="fragment" data-fragment-index="1">Drivers</li>
-						<li class="fragment" data-fragment-index="1">Surrogate models</li>
-						<li class="fragment" data-fragment-index="1">Component Libraries</li>
-						<li class="fragment" data-fragment-index="1"> Tools to submit jobs to your local cluster </li>
-						<li class="fragment green" data-fragment-index="2"> Code Wrappers (for SU2!) </li>
-						<li class="fragment green" data-fragment-index="2"> Method you developed for your thesis </li>	
-						<li class="fragment yellow" data-fragment-index="3"> Assembly for Event-Driven Simulations</li>
-						<li class="fragment yellow" data-fragment-index="3"> Workflow that finds optimal orderings for coupled problems </li>
-						<li class="fragment red" data-fragment-index="4"> Different GUI</li>
-						<li class="fragment red" data-fragment-index="4"> Amazon S3-based CaseRecorder </li> 
-					</ul>
-				</section>
-					
-				<section>
-					<h2> Building Your Own Plugin </h2>
-					<pre><code class="no-highlight">plugin quickstart awesome_comp -g openmdao.component</code></pre>
-					<p> This will create an <span class="green"> awesome_comp </span> 
-						folder, which has a skeleton openmdao plugin already setup
-					</p>
-					<p>
-						We have skeletons for a few different kinds of plugins: 
-						<pre><code class="no-highlight">plugin quickstart --help</code></pre>
-					</p>
-				</section>
+                math: {
+                    //mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                    mathjax: '/lib/js/MathJax/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
 
-				<section>
-					<h3> Plugin Structure </h3>
-					(stuff in <span class="green">green</span> is where you want to start)
-					<ul class="nobullet">
-						<li>docs<ul class="nobullet">
-							<li>docs files...</li>
-						</ul></li>
-						<li>MANIFEST.in</li>
-						<li>README.txt</li>
-						<li>setup.cfg</li>
-						<li><span class="green">setup.py</span></li>
-						<li>src<ul class="nobullet">
-							<li>awesome_comp<ul class="nobullet">
-								<li>__init__.py</li>
-								<li><span class="green">awesome_comp.py</span></li>
-								<li>test<ul class="nobullet">
-									<li>test_awesome_comp.py</li>
-								</ul></li>
-							</ul></li>
-						</ul></li>
-					</ul>
-				</section>
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/math/math.js', async: true }                
+                ]
+            });
 
-				
+        </script>
 
-				
-				<section>
-					<h2> Questions? </h2>
-				</section>
-
-		</div>
-
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
-
-		<script>
-
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-			    math: {
-			        //mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
-			        mathjax: '/lib/js/MathJax/MathJax.js',
-			        config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-			    },
-
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/math/math.js', async: true }				
-				]
-			});
-
-		</script>
-
-	</body>
+    </body>
 </html>
